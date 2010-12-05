@@ -3,19 +3,22 @@
 * Pretty-printing
 * Outlining
 * Tables
+* Rendering Data
+* Rendering Pages
+* Graphing
+* Assembling Data
 
 ## Pretty-printing
 
 ### Start
 
-Document:
-
     {
       "_id": "231412",
       "_rev": "31723128",
       "location": {
-        "city": "Boulder",
-        "state": "CO"
+        "city":    "Boulder",
+        "country": "USA",
+        "state":   "CO"
       },
       "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
       "name": {
@@ -30,149 +33,35 @@ Document:
         "Ben Atkin"
       }
     }
-    
-### Structuring for ordering and metadata
 
-Expands the document to make it orderable. Maybe I'd prefer for it to be
-like this:
-
-    {
-      "key":      "name",
-      "type":     "object",
-      "children": [
-        {
-          "key":   "first",
-          "value": "Ben"
-        },
-        {
-          "key":   "last",
-          "value": "Atkin"
-        }
-      ]
-    }
-
-For comparison:
-
-    [
-      "object",
-      {
-        "key":   "name"
-      },
-      [
-        "string",
-        {
-          "key":   "first",
-          "value": "Ben"
-        },
-      ],
-      [
-        "string",
-        {
-          "key":   "last",
-          "value": "Atkin"
-        }
-      ]
-    ]
-
-Yes, I prefer the object-based one. It would be easier to incorporate
-different attribute sets, like attr and css, too.
+### Wrapping
 
 Document:
 
     {
-      "value": [
-        "object",
-        [
-          "string",
-          {
-            "key":   "_id",
-            "value": "231412"
-          }
+      "value": {
+        "_id": "231412",
+        "_rev": "31723128",
+        "location": {
+          "city":    "Boulder",
+          "country": "USA",
+          "state":   "CO"
+        },
+        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
+        "name": {
+          "first": "Ben",
+          "last": "Atkin"
+        },
+        "tags": [
+          "programmer",
+          "boulder"
         ],
-        [
-          "string",
-          {
-            "key":   "_rev",
-            "value": "31723128"
-          }
-        ],
-        [
-          "object",
-          {
-            "key":   "location"
-          },
-          [
-            "string",
-            {
-              "key":   "city",
-              "value": "Boulder"
-            },
-          ],
-          [
-            "string",
-            {
-              "key":   "state",
-              "value": "CO"
-            }
-          ]
-        ],
-        [
-          "string",
-          {
-            "key":   "markdown",
-            "value": "# Ben Atkin's Page\n\nI like pure functions.</p>"
-          }
-        ],
-        [
-          "object",
-          {
-            "key":   "name"
-          },
-          [
-            "string",
-            {
-              "key":   "first",
-              "value": "Ben"
-            },
-          ],
-          [
-            "string",
-            {
-              "key":   "last",
-              "value": "Atkin"
-            }
-          ]
-        ],
-        [
-          "array",
-          {
-            "key":   "tags"
-          },
-          [
-            "string",
-            {
-              "index": 0,
-              "value": "programmer"
-            },
-          ],
-          [
-            "string",
-            {
-              "index": 1,
-              "value": "boulder"
-            }
-          ]
-        ],
-        [
-          "string",
-          {
-            "key":   "title",
-            "value": "Ben Atkin"
-          }
-        ]
-      ]
+        "title": {
+          "Ben Atkin"
+        }
+      }
     }
-
+    
 ### Ordering
 
 Options:
@@ -183,107 +72,69 @@ Options:
         "fields":   ["_id", "_rev"],
         "priority": 10
       },
+      "location": {
+        "position": "top",
+        "fields":   ["city", "state", "country"]
+      },
       "wiki": {
         "position": "top",
         "fields":   ["title", "markdown"]
       }
     }
 
-Output:
+Document:
 
     {
-      "value": [
-        "object",
-        [
-          "string",
-          {
-            "key":   "_id",
-            "value": "231412"
-          }
-        ],
-        [
-          "string",
-          {
-            "key":   "_rev",
-            "value": "31723128"
-          }
-        ],
-        [
-          "string",
-          {
-            "key":   "title",
-            "value": "Ben Atkin"
-          }
-        ],
-        [
-          "string",
-          {
-            "key":   "markdown",
-            "value": "# Ben Atkin's Page\n\nI like pure functions.</p>"
-          }
-        ],
-        [
-          "object",
-          {
-            "key":   "location"
-          },
-          [
-            "string",
-            {
-              "key":   "city",
-              "value": "Boulder"
-            },
-          ],
-          [
-            "string",
-            {
-              "key":   "state",
-              "value": "CO"
-            }
+      "children": {
+        "location": {
+          "keys": [
+            "city",
+            "state",
+            "country"
           ]
+        }
+      },
+      "value": {
+        "_id": "231412",
+        "_rev": "31723128",
+        "location": {
+          "city":    "Boulder",
+          "country": "USA",
+          "state":   "CO"
+        },
+        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
+        "name": {
+          "first": "Ben",
+          "last": "Atkin"
+        },
+        "tags": [
+          "programmer",
+          "boulder"
         ],
-        [
-          "object",
-          {
-            "key":   "name"
-          },
-          [
-            "string",
-            {
-              "key":   "first",
-              "value": "Ben"
-            },
-          ],
-          [
-            "string",
-            {
-              "key":   "last",
-              "value": "Atkin"
-            }
-          ]
-        ],
-        [
-          "array",
-          {
-            "key":   "tags"
-          },
-          [
-            "string",
-            {
-              "index": 0,
-              "value": "programmer"
-            },
-          ],
-          [
-            "string",
-            {
-              "index": 1,
-              "value": "boulder"
-            }
-          ]
-        ]
+        "title": {
+          "Ben Atkin"
+        }
+      },
+      "keys": [
+        "_id",
+        "_rev",
+        "title",
+        "markdown",
+        "location",
+        "name",
+        "tags"
       ]
     }
+    
+### Coloring
+
+Options:
+
+    {
+      
+    }
+
+### Printing
 
 # Functions
 
