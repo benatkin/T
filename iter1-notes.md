@@ -8,149 +8,22 @@
 * Graphing
 * Assembling Data
 
-## Pretty-printing
-
-### Start
-
-    {
-      "_id": "231412",
-      "_rev": "31723128",
-      "location": {
-        "city":    "Boulder",
-        "country": "USA",
-        "state":   "CO"
-      },
-      "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
-      "name": {
-        "first": "Ben",
-        "last": "Atkin"
-      },
-      "tags": [
-        "programmer",
-        "boulder"
-      ],
-      "title": {
-        "Ben Atkin"
-      }
-    }
-
-### Wrapping
-
-Document:
-
-    {
-      "value": {
-        "_id": "231412",
-        "_rev": "31723128",
-        "location": {
-          "city":    "Boulder",
-          "country": "USA",
-          "state":   "CO"
-        },
-        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
-        "name": {
-          "first": "Ben",
-          "last": "Atkin"
-        },
-        "tags": [
-          "programmer",
-          "boulder"
-        ],
-        "title": {
-          "Ben Atkin"
-        }
-      }
-    }
-    
-### Ordering
-
-Options:
-    
-    {
-      "couchdb": {
-        "position": "top",
-        "fields":   ["_id", "_rev"],
-        "priority": 10
-      },
-      "location": {
-        "position": "top",
-        "fields":   ["city", "state", "country"]
-      },
-      "wiki": {
-        "position": "top",
-        "fields":   ["title", "markdown"]
-      }
-    }
-
-Document:
-
-    {
-      "children": {
-        "location": {
-          "keys": [
-            "city",
-            "state",
-            "country"
-          ]
-        }
-      },
-      "value": {
-        "_id": "231412",
-        "_rev": "31723128",
-        "location": {
-          "city":    "Boulder",
-          "country": "USA",
-          "state":   "CO"
-        },
-        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
-        "name": {
-          "first": "Ben",
-          "last": "Atkin"
-        },
-        "tags": [
-          "programmer",
-          "boulder"
-        ],
-        "title": {
-          "Ben Atkin"
-        }
-      },
-      "keys": [
-        "_id",
-        "_rev",
-        "title",
-        "markdown",
-        "location",
-        "name",
-        "tags"
-      ]
-    }
-    
-### Coloring
-
-Options:
-
-    {
-      
-    }
-
-### Printing
-
 # Functions
 
-## 
+* **applyOrder()** - Applies ordering rules based on what's in the
+  document.
 
 # User Interface
 
 * Page
-  * Content Area
-    * Main Document (1)
-    * attachments and widgets (0+)
-  * Sidebar
-    * Custom processing
-    * Suggested processing
-    * Selected processing
-      * Steps (indicate if nothing changes)
+    * Content Area
+        * Main Document (1)
+        * attachments and widgets (0+)
+    * Sidebar
+        * Custom processing
+        * Suggested processing
+        * Selected processing
+            * Steps (indicate if nothing changes)
 
 # What
 
