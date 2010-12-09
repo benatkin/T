@@ -90,8 +90,6 @@ Document:
     
 ## Traversing (Flattening)
 
-Options:
-
     {
       "children": {
         "location": {
