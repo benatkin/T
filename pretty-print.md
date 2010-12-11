@@ -3,50 +3,49 @@
 ## Start
 
     {
-      "_id": "231412",
-      "_rev": "31723128",
-      "location": {
-        "city":    "Boulder",
-        "country": "USA",
-        "state":   "CO"
+      "ordering": {
+        "couchdb": {
+          "position": "top",
+          "keys":     ["_id", "_rev"],
+          "priority": 10
+        },
+        "location": {
+          "position": "top",
+          "keys":     ["city", "state", "country"]
+        },
+        "wiki": {
+          "position": "top",
+          "keys":     ["title", "markdown"]
+        }
       },
-      "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
-      "name": {
-        "first": "Ben",
-        "last": "Atkin"
-      },
-      "tags": [
-        "programmer",
-        "boulder"
-      ],
-      "title": {
-        "Ben Atkin"
+      "value": {
+        "_id": "231412",
+        "_rev": "31723128",
+        "location": {
+          "city":    "Boulder",
+          "country": "USA",
+          "state":   "CO"
+        },
+        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
+        "name": {
+          "first": "Ben",
+          "last": "Atkin"
+        },
+        "tags": [
+          "programmer",
+          "boulder"
+        ],
+        "title": {
+          "Ben Atkin"
+        }
       }
     }
 
 ## Ordering
 
-Options:
+This metadata gets added:
     
     {
-      "couchdb": {
-        "position": "top",
-        "fields":   ["_id", "_rev"],
-        "priority": 10
-      },
-      "location": {
-        "position": "top",
-        "fields":   ["city", "state", "country"]
-      },
-      "wiki": {
-        "position": "top",
-        "fields":   ["title", "markdown"]
-      }
-    }
-
-Document:
-
-    {
       "children": {
         "location": {
           "keys": [
@@ -54,27 +53,6 @@ Document:
             "state",
             "country"
           ]
-        }
-      },
-      "value": {
-        "_id": "231412",
-        "_rev": "31723128",
-        "location": {
-          "city":    "Boulder",
-          "country": "USA",
-          "state":   "CO"
-        },
-        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
-        "name": {
-          "first": "Ben",
-          "last": "Atkin"
-        },
-        "tags": [
-          "programmer",
-          "boulder"
-        ],
-        "title": {
-          "Ben Atkin"
         }
       },
       "keys": [
@@ -87,155 +65,14 @@ Document:
         "tags"
       ]
     }
-    
-## Traversing (Flattening)
 
-    {
-      "children": {
-        "location": {
-          "keys": [
-            "city",
-            "state",
-            "country"
-          ]
-        }
-      },
-      "value": {
-        "_id": "231412",
-        "_rev": "31723128",
-        "location": {
-          "city":    "Boulder",
-          "country": "USA",
-          "state":   "CO"
-        },
-        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
-        "name": {
-          "first": "Ben",
-          "last": "Atkin"
-        },
-        "tags": [
-          "programmer",
-          "boulder"
-        ],
-        "title": {
-          "Ben Atkin"
-        }
-      },
-      "keys": [
-        "_id",
-        "_rev",
-        "title",
-        "markdown",
-        "location",
-        "name",
-        "tags"
-      ],
-      "traversal": [
-        {
-          "path":  [],
-          "order": "pre"
-        },
-        {
-          "path":  ["_id"]
-        },
-        {
-          "path":  ["_rev"]
-        },
-        {
-          "path":  ["title"]
-        },
-        {
-          "TODO":  "add remaining items in object root"
-        },
-        {
-          "path":  [],
-          "order": "post"
-        }
-      ]
-    }
+# Pretty-printing JSON
 
-## Printing each node
-
-    {
-      "children": {
-        "location": {
-          "keys": [
-            "city",
-            "state",
-            "country"
-          ]
-        }
-      },
-      "value": {
-        "_id": "231412",
-        "_rev": "31723128",
-        "location": {
-          "city":    "Boulder",
-          "country": "USA",
-          "state":   "CO"
-        },
-        "markdown": "# Ben Atkin's Page\n\nI like pure functions.</p>",
-        "name": {
-          "first": "Ben",
-          "last": "Atkin"
-        },
-        "tags": [
-          "programmer",
-          "boulder"
-        ],
-        "title": {
-          "Ben Atkin"
-        }
-      },
-      "keys": [
-        "_id",
-        "_rev",
-        "title",
-        "markdown",
-        "location",
-        "name",
-        "tags"
-      ],
-      "traversal": [
-        {
-          "path":  [],
-          "order": "pre",
-          "text":  "{\n"
-        },
-        {
-          "path":  ["_id"],
-          "text":  "  \"_id\": \"231412\",\n"
-        },
-        {
-          "path":  ["_rev"],
-          "text":  "  \"_rev\": \"31723128\",\n"
-        },
-        {
-          "path":  ["title"],
-          "text":  "  \"title\": \"Ben Atkin\",\n"
-        },
-        {
-          "TODO":  "add remaining items in object root"
-        },
-        {
-          "path":  [],
-          "order": "post",
-          "text":  "}\n"
-        }
-      ]
-    }
-
-# Joining nodes to pretty-print
-
-Up until this point, data has only been added. Nothing's been thrown
-out. Now this transformation joins all text within traversel.
-
-Actually, this multi-line string could be a property on the object.
+This multi-line string gets added at the eref ["text", "outer"].
 
     {
       "_id":   "231412",
       "_rev":  "31723128",
       "title": "Ben Atkin",
-      (TODO)
     }
 
