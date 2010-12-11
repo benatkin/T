@@ -1,2 +1,0 @@
-function order(tree, opts) {
-}
