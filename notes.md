@@ -1,12 +1,41 @@
-# Use Cases
+# About
+
+A tree data editing and manipulation tool.
+
+# Navigation
+
+* Like HTML and jQuery
+* Children, parent, siblings
+* Finding rules, like CSS
+
+# Metadata
+
+* Attach to any node
+* Assume no structure
+
+# Transformations
 
 * Pretty-printing
-* Outlining
 * Tables
 * Rendering Data
 * Rendering Pages
 * Graphing
 * Assembling Data
+
+# Data Model
+
+* Document-based
+* Tags
+* Time
+* Attached documents (versions)
+
+# Viewing and Editing
+
+* Outlining
+* Node Navigation
+* History
+* Wiki-like editing
+* Rich text
 
 # Functions
 
@@ -25,10 +54,6 @@
         * Selected processing
             * Steps (indicate if nothing changes)
 
-# What
-
-A processing library for trees
-
 # Thoughts
 
 ## Lots of things are trees
@@ -39,7 +64,6 @@ A processing library for trees
 
 ## JSONML is more flexible than XML
 
-In JSONML, attributes can contain 
-
-To do the equivalent with XML would be unsightly. One way to do it would
-be to have 
+In JSONML, attributes can contain anything an element can. This can be
+handy in processing steps before things need to be turned into html
+attributes.
